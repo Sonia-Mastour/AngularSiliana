@@ -1,6 +1,6 @@
 <h1>{{appName}}</h1>
 <div class="row">
-    <div class="col-md-3" *ngFor="let product of list">
+    <div class="col-md-3" *ngFor="let product of list; let i=index">
             <div class="card" style="width: 18rem;">
               <img src="{{product.picture}}" class="card-img-top" alt="...">
               <div class="card-body">
@@ -11,8 +11,13 @@
                   quantity: {{product.quantity}}
                 </p>
                 <button (click)="incrementLike(product)"
-                class="btn btn-primary">
+                class="btn btn-sm btn-primary">
                   like {{product.nbrLike}}
+                </button>
+                &nbsp;
+                <button (click)="buyProduct(i)"
+                class="btn btn-sm btn-warning">
+                  buy
                 </button>
               </div>
             </div>

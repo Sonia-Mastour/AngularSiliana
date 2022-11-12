@@ -16,10 +16,15 @@
                 </button>
                 &nbsp;
                 <button (click)="buyProduct(i)"
-                class="btn btn-sm btn-warning">
+                class="btn btn-sm btn-warning"
+                [disabled]="product.quantity==0">
                   buy
                 </button>
+                <p *ngIf="product.quantity==0">
+                  out of stock :(
+                </p>
               </div>
             </div>
     </div>
 </div>
+

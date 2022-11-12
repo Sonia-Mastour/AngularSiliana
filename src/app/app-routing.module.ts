@@ -6,7 +6,8 @@ import { FormProductComponent } from './form-product/form-product.component';
 import { Routes, RouterModule } from '@angular/router';
 const ROUTES: Routes=[
   {path:'list',component: ListProductComponent},
-  {path:'new', component: FormProductComponent}
+  {path:'new', component: FormProductComponent},
+  {path:'',component: ListProductComponent}
 ]
 @NgModule({
   imports: [

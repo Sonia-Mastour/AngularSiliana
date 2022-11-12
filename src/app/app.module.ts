@@ -5,16 +5,20 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ListProductComponent } from './list-product/list-product.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormProductComponent } from './form-product/form-product.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ListProductComponent,
-    FooterComponent
+    FooterComponent,
+    FormProductComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

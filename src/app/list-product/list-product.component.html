@@ -10,7 +10,10 @@
                   <br>
                   quantity: {{product.quantity}}
                 </p>
-                <a href="#" class="btn btn-primary">like {{product.nbrLike}}</a>
+                <button (click)="incrementLike(product)"
+                class="btn btn-primary">
+                  like {{product.nbrLike}}
+                </button>
               </div>
             </div>
     </div>

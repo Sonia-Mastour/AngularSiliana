@@ -7,12 +7,12 @@ import { Product } from '../model/product';
   styleUrls: ['./list-product.component.css']
 })
 export class ListProductComponent implements OnInit {
-  public appName: string;
+  public appName!: string;
   public list!: Product[];
   constructor() {
-    this.appName ='myApp Store';
   }
   ngOnInit(): void {
+    this.appName ='myApp Store';
     this.list=[
       {id:12,
       name:'T-shirt 1',
@@ -29,6 +29,14 @@ export class ListProductComponent implements OnInit {
       nbrLike: 10
     }
     ]
+    console.log(this.list)
+  }
+  incrementLike(product:Product): void{
+      let i = this.list.indexOf(product);
+      if(i!=-1){
+        this.list[i].nbrLike++
+      }
+      console.log(this.list)
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../model/product';
 
 @Component({
   selector: 'app-form-product',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-product.component.css']
 })
 export class FormProductComponent implements OnInit {
-
+  public product!: Product;
   constructor() { }
 
   ngOnInit(): void {
+    this.product = new Product()
   }
+  save(){
+    //data
+    this.product.nbrLike=0;
+    console.log(this.product)
+    //insert
 
+  }
 }

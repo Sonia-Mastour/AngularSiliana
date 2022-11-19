@@ -1,7 +1,9 @@
 <h1>{{appName}}</h1>
+<input type="text" name="price" [(ngModel)]="priceMax">
 <div class="row">
+
     <div class="col-md-3" *ngFor="let product of list; let i=index">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;" *ngIf="product.price<priceMax || priceMax==null">
               <img src="{{product.picture}}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
@@ -20,6 +22,14 @@
                 [disabled]="product.quantity==0">
                   buy
                 </button>
+                <button class="btn btn-danger btn-sm"
+                (click)="deleteProduct(product.id, i)">
+                  Delete
+                </button>
+                <a [routerLink]="['/product',product.id]">
+                 <p>detail product</p>
+                </a>
+
                 <p *ngIf="product.quantity==0">
                   out of stock :(
                 </p>

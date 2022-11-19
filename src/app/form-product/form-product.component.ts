@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../model/product';
 
+import { Product } from '../model/product';
+import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-product',
   templateUrl: './form-product.component.html',
@@ -8,16 +10,19 @@ import { Product } from '../model/product';
 })
 export class FormProductComponent implements OnInit {
   public product!: Product;
-  constructor() { }
-
+  constructor(private prodService:ProductService,
+    private route:Router) { }
   ngOnInit(): void {
     this.product = new Product()
   }
   save(){
-    //data
     this.product.nbrLike=0;
-    console.log(this.product)
-    //insert
- 
+    this.prodService.addProduct(this.product).subscribe(
+      ()=>{this.route.navigate(['/list'])},
+      ()=>{console.log('error')},
+      ()=>{console.log("complete")}
+    )
+
   }
+
 }

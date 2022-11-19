@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../model/product';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-list-product',
@@ -9,37 +10,37 @@ import { Product } from '../model/product';
 export class ListProductComponent implements OnInit {
   public appName!: string;
   public list!: Product[];
-  constructor() {
+  public priceMax: number;
+  constructor(private prodService: ProductService) {
   }
   ngOnInit(): void {
     this.appName ='myApp Store';
-    this.list=[
-      {id:12,
-      name:'T-shirt 1',
-      price: 23,
-      quantity: 2,
-      picture: 'https://www.exist.com.tn/61485-large_default/t-shirt.jpg',
-      nbrLike: 10
-    },
-    { id:11,
-      name:'T-shirt 1',
-      price: 23,
-      quantity: 0,
-      picture: 'https://www.exist.com.tn/81822-large_default/t-shirt-de-sport.jpg',
-      nbrLike: 10
-    }
-    ]
+    this.prodService.getAllProduct().subscribe(
+      (data:Product[])=>{ this.list=data}
+    )
+
     console.log(this.list)
   }
   incrementLike(product:Product): void{
       let i = this.list.indexOf(product);
       if(i!=-1){
         this.list[i].nbrLike++
+        this.prodService.updateProduct(product).subscribe()
       }
       console.log(this.list)
   }
   buyProduct(i:number){
       this.list[i].quantity--
+  }
+
+  deleteProduct(id: number, i:number){
+    this.prodService.deleteProduct(id)
+    .subscribe(
+      () =>{
+        //splice(i, 1)
+        this.list.splice(i, 1);
+      }
+    );
   }
 
 }

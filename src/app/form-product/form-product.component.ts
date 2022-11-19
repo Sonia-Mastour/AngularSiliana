@@ -18,6 +18,6 @@ export class FormProductComponent implements OnInit {
     this.product.nbrLike=0;
     console.log(this.product)
     //insert
-
+ 
   }
 }
